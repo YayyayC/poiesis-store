@@ -1,0 +1,18 @@
+{
+  "name": "poiesis-server",
+  "version": "1.0.0",
+  "description": "POIESIS 풀스택 백엔드 — 회원·세션·한정재고·주문",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.mjs"
+  },
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie": "^0.6.0",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0"
+  }
+}

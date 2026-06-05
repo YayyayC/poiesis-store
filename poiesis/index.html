@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POIESIS — 창조하는 손을 위한 가죽 노트 · 에디션당 33개 한정</title>
+<meta name="description" content="위대한 대가들의 창조 정신을 담은 핸드메이드 가죽 노트. 이탈리아산 풀그레인 가죽, 에디션당 33권 한정 제작. 다빈치·도스토옙스키·오리진. 15만 원 이상 무료배송.">
+<meta name="theme-color" content="#f4eee1">
+<link rel="canonical" href="https://poiesis.studio/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="POIESIS">
+<meta property="og:title" content="POIESIS — 창조하는 손을 위한 가죽 노트">
+<meta property="og:description" content="대가들의 창조 정신을 담은 핸드메이드 가죽 노트. 에디션당 33권 한정 제작.">
+<meta property="og:image" content="https://poiesis.studio/assets/og-cover.svg">
+<meta property="og:url" content="https://poiesis.studio/">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="POIESIS — 창조하는 손을 위한 가죽 노트">
+<meta name="twitter:description" content="대가들의 창조 정신을 담은 핸드메이드 가죽 노트. 에디션당 33권 한정.">
+<meta name="twitter:image" content="https://poiesis.studio/assets/og-cover.svg">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"POIESIS","url":"https://poiesis.studio/","description":"위대한 대가들의 창조 정신을 담은 핸드메이드 가죽 노트 브랜드. 에디션당 33권 한정 제작.","email":"hello@poiesis.studio","slogan":"Create, act, and sincerely listen to your inner signal. Follow it, and go on."}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <a href="#/" class="brand" aria-label="POIESIS 홈"><img src="assets/logo.svg" alt="POIESIS" class="logo-img"></a>
+  <nav class="nav" id="nav">
+    <a href="#/" data-route="/">Home</a>
+    <a href="#/products" data-route="/products">Collection</a>
+    <a href="#/about" data-route="/about">Philosophy</a>
+    <a href="#/login" class="acct-link" id="acctLink" data-route="/account">로그인</a>
+    <a href="#/cart" class="cart-btn" data-route="/cart">
+      Cart <span class="count" id="cartCount">0</span>
+    </a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="app"><!-- routed views render here --></main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#/" class="brand" aria-label="POIESIS 홈"><img src="assets/logo-cream.svg" alt="POIESIS" class="logo-img footer-logo"></a>
+        <p>“Create, act, and sincerely listen to your inner signal. Follow it, and go on.”</p>
+        <div class="seller-info">
+          <b>POIESIS STUDIO</b> · 대표 [대표자명]<br>
+          사업자등록번호 [000-00-00000] · 통신판매업신고 [제0000-지역-0000호]<br>
+          주소 [사업장 주소] · 고객문의 hello@poiesis.studio<br>
+          호스팅 제공: [호스팅사명]
+          <span style="display:block;margin-top:8px;opacity:.7">※ [   ] 항목은 사업자 등록 후 실제 정보로 교체하세요.</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Collection</h5>
+        <a href="#/product/vinci">Vinci Edition</a>
+        <a href="#/product/dostoevsky">Dostoevsky Edition</a>
+        <a href="#/product/origin">Origin</a>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <a href="#/about">Philosophy</a>
+        <a href="#/faq">FAQ</a>
+        <a href="#/products">Lookbook</a>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <a href="#/policy">배송 · 교환 · 환불</a>
+        <a href="#/terms">이용약관</a>
+        <a href="#/privacy">개인정보 처리방침</a>
+        <a href="mailto:hello@poiesis.studio">hello@poiesis.studio</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 POIESIS STUDIO. All rights reserved.</span>
+      <span>Handcrafted in small batches · Seoul</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

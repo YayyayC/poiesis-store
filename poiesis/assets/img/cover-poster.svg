@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1018" role="img" aria-label="POIESIS cover">
+<defs><radialGradient id="pp" cx="50%" cy="38%" r="78%">
+  <stop offset="0%" stop-color="#f5efdf"/><stop offset="100%" stop-color="#e7decb"/>
+</radialGradient></defs>
+<rect width="720" height="1018" fill="url(#pp)"/>
+<g transform="translate(150,300)"><rect x="0.0" y="-3.8" width="51.0" height="7.6" fill="#2c2419"/><circle cx="82.5" cy="0.0" r="7.6" fill="#2c2419"/><rect x="113.9" y="-3.8" width="255.0" height="7.6" fill="#2c2419"/></g>
+<text x="150" y="372" font-family="Helvetica, Arial, sans-serif" font-size="33" fill="#1c1813">Create, act, and sincerely listen to</text>
+<text x="150" y="417" font-family="Helvetica, Arial, sans-serif" font-size="33" fill="#1c1813">your inner signal. Follow it, and go on</text>
+<text x="360" y="900" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="60" font-weight="600" letter-spacing="5" fill="#2c2419">POIESIS</text>
+<g transform="translate(300,930)"><rect x="0.0" y="-2.1" width="27.6" height="4.1" fill="#2c2419"/><circle cx="44.6" cy="0.0" r="4.1" fill="#2c2419"/><rect x="61.6" y="-2.1" width="138.0" height="4.1" fill="#2c2419"/></g>
+</svg>

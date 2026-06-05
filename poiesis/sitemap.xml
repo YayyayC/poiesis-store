@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 배포 도메인이 정해지면 poiesis.studio 부분을 실제 도메인으로 교체하세요. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://poiesis.studio/</loc><priority>1.0</priority></url>
+  <url><loc>https://poiesis.studio/#/products</loc><priority>0.9</priority></url>
+  <url><loc>https://poiesis.studio/#/product/vinci</loc><priority>0.8</priority></url>
+  <url><loc>https://poiesis.studio/#/product/dostoevsky</loc><priority>0.8</priority></url>
+  <url><loc>https://poiesis.studio/#/product/origin</loc><priority>0.8</priority></url>
+  <url><loc>https://poiesis.studio/#/about</loc><priority>0.6</priority></url>
+  <url><loc>https://poiesis.studio/#/faq</loc><priority>0.5</priority></url>
+  <url><loc>https://poiesis.studio/#/policy</loc><priority>0.4</priority></url>
+  <url><loc>https://poiesis.studio/#/terms</loc><priority>0.3</priority></url>
+  <url><loc>https://poiesis.studio/#/privacy</loc><priority>0.3</priority></url>
+</urlset>
