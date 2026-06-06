@@ -243,37 +243,49 @@ function toast(msg){
 function viewHome(){
   const feat = getProduct('dostoevsky');
   return `
-  <section class="hero">
-    <img class="hero-figure" src="assets/img/vinci-cover.svg" alt="">
-    <div class="hero-inner reveal">
-      <div class="mark" style="color:var(--gold);margin-bottom:24px">${signalSVG(120)}</div>
-      <div class="scarcity"><span class="dotpulse"></span>에디션당 단 ${EDITION}권 · 핸드메이드 한정 제작</div>
-      <h1>창조하는 손을 위한<br><em>한 권의 가죽 노트</em></h1>
-      <p class="lede">Create, act, and sincerely listen to your inner signal. Follow it, and go on.</p>
-      <div class="cta-row">
-        <a href="#/products" class="btn btn-solid btn-lg">한정 컬렉션 보기</a>
-        <a href="#/about" class="btn btn-lg">브랜드 이야기</a>
+  <section class="video-hero">
+    <div class="vh-text reveal">
+      <span class="eyebrow">Inspired by the Masters</span>
+      <h1>THE MASTERS<br>COLLECTION</h1>
+      <p class="vh-sub">한 장씩 손으로 고른 가죽, 에디션당 단 ${EDITION}권. 위대한 대가들의 창조 정신을 담은 핸드메이드 노트.</p>
+      <div class="vh-actions">
+        <a href="#/products" class="btn btn-solid">컬렉션 보기</a>
+        <a href="#/about" class="btn">브랜드 이야기</a>
       </div>
     </div>
-    <div class="scroll-hint"><span>Scroll</span><span class="bar"></span></div>
-  </section>
-
-  <section style="padding:0">
-    <div class="container" style="padding-top:64px;padding-bottom:64px">
-      <div class="trust-row reveal">
-        <div class="t"><div class="ic">✦</div><div class="tl">에디션당 33권</div><div class="ts">고유 넘버 정품 보증</div></div>
-        <div class="t"><div class="ic">⤳</div><div class="tl">무료 배송</div><div class="ts">15만 원 이상 구매 시</div></div>
-        <div class="t"><div class="ic">↺</div><div class="tl">14일 교환·반품</div><div class="ts">미사용 시 안심 반품</div></div>
-        <div class="t"><div class="ic">⌘</div><div class="tl">전용 펜·기프트 박스</div><div class="ts">모든 에디션 기본 포함</div></div>
-      </div>
+    <div class="vh-media">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/img/hero-poster.jpg">
+        <source src="assets/img/hero.mp4" type="video/mp4">
+      </video>
     </div>
   </section>
 
-  <section class="philosophy section">
-    <div class="container reveal">
-      <p class="quote">창조의 영혼은 사라지지 않습니다. 다만 <span>위대한 손들</span>을 통해 다시 깨어날 뿐입니다.</p>
-      <div class="attribution">— The POIESIS Manifesto</div>
+  <section class="philos-cine" id="philosophy">
+    <div class="pc-bg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Foppa_-_The_Young_Cicero_Reading%2C_c._1464%2C_P538.jpg" alt="빈첸초 포파, ‘책을 읽는 소년 키케로’ (1464)" referrerpolicy="no-referrer"></div>
+    <div class="pc-overlay"></div>
+    <div class="pc-content">
+      <span class="eyebrow">The Origin of Creation</span>
+      <h2>창조는 무엇으로부터<br>시작되는가</h2>
+      <p class="pc-lead">태초에 빛이 있었습니다. 하나의 점으로부터 세상은 빛의 줄기를 펼쳐나갔습니다.</p>
+      <p class="pc-lead">인간은 하나의 스치는 아이디어를 손끝에서 점으로, 선으로 그리며 만들어나갑니다. 점과 선, 바로 그곳으로부터 창조는 시작됩니다.</p>
+      <p class="pc-quote">“영적 창조를 위해서 투자하고 또 투자하라.”<cite>Ralph Waldo Emerson</cite></p>
+      <p class="pc-lead">창조, 그것은 우리에게 주어진 사명입니다. 우리는 창조를 통해 세상을 더욱 아름답게 만들어야 할 의무를 지니고 태어났습니다.</p>
+      <p class="pc-sub"><b style="color:#fff;font-weight:600">Poiesis.</b> 우리의 사명은 당신이 모험하고 도전하며 더욱 많이 써내려가도록 하는 것입니다.</p>
     </div>
+    <div class="pc-credit">Vincenzo Foppa, ‘The Young Cicero Reading’, c.1464 · Public Domain</div>
+  </section>
+
+  <section class="philos-cine" id="masters">
+    <div class="pc-bg"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Leonardo_da_Vinci_%E2%80%93_Codex_Atlanticus_folio_459r.jpg" alt="레오나르도 다 빈치, 코덱스 아틀란티쿠스 (folio 459r)" referrerpolicy="no-referrer"></div>
+    <div class="pc-overlay"></div>
+    <div class="pc-content">
+      <span class="eyebrow">Inspired by the Masters</span>
+      <h2>위대한 창조는<br><em>다작</em>에서 태어납니다</h2>
+      <p class="pc-lead">키케로는 1,000여 점의 글을, 다 빈치는 13,000여 페이지의 노트를, 아인슈타인은 3만여 점의 기록을, 에디슨은 1,093개의 특허를 남겼습니다. 천재는 결과가 아니라, 멈추지 않고 종이 위에 써 내려간 태도였습니다.</p>
+      <p class="pc-quote">“이건 제 작업의 기록이 아닙니다. 작업, 그 자체입니다.”<cite>Richard Feynman</cite></p>
+      <p class="pc-sub">손끝의 점과 선에서 시작되는 무한한 여정. POIESIS는 그 위대한 창조의 영혼을 한 권의 노트로 되살립니다.</p>
+    </div>
+    <div class="pc-credit">Leonardo da Vinci, ‘Codex Atlanticus’ f.459r · Public Domain</div>
   </section>
 
   <section class="section" id="collection">
@@ -284,8 +296,19 @@ function viewHome(){
         <h2>세 명의 대가, 세 권의 노트</h2>
         <p>각 에디션은 한 사람의 창조 정신을 표지에 새깁니다. 같은 가죽, 같은 제본 — 다른 영혼.</p>
       </div>
-      <div class="product-grid">
-        ${PRODUCTS.map(cardHTML).join('')}
+      <div class="product-rows">
+        ${PRODUCTS.map(rowHTML).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0">
+    <div class="container" style="padding-top:64px;padding-bottom:64px">
+      <div class="trust-row reveal">
+        <div class="t"><div class="ic">✦</div><div class="tl">에디션당 33권</div><div class="ts">고유 넘버 정품 보증</div></div>
+        <div class="t"><div class="ic">⤳</div><div class="tl">무료 배송</div><div class="ts">15만 원 이상 구매 시</div></div>
+        <div class="t"><div class="ic">↺</div><div class="tl">14일 교환·반품</div><div class="ts">미사용 시 안심 반품</div></div>
+        <div class="t"><div class="ic">⌘</div><div class="tl">전용 펜·기프트 박스</div><div class="ts">모든 에디션 기본 포함</div></div>
       </div>
     </div>
   </section>
@@ -391,18 +414,49 @@ function cardHTML(p){
   </a>`;
 }
 
+function rowHTML(p, i){
+  const rem = remaining(p.id);
+  const out = rem<=0;
+  const badge = out ? 'SOLD OUT' : p.badge;
+  const stockText = p.available
+    ? (out ? '이번 에디션 품절' : `${EDITION}권 한정 · 남은 ${rem}권`)
+    : (out ? '예약 마감' : `${EDITION}권 한정 · 예약 가능 ${rem}권`);
+  const num = String(i+1).padStart(2,'0');
+  return `
+  <article class="product-row">
+    <a class="row-media" href="#/product/${p.id}" aria-label="${esc(p.name)}">
+      ${badge?`<span class="badge${out?' sold':''}">${badge}</span>`:''}
+      <img src="${p.images[0]}" alt="${esc(p.kr)}" loading="lazy">
+      <span class="row-num">${num}</span>
+    </a>
+    <div class="row-body">
+      <div class="kr">${esc(p.kr)}</div>
+      <h3>${p.name}</h3>
+      <p class="tagline">${esc(p.tagline)}</p>
+      <p class="row-desc">${esc(p.short)}</p>
+      <div class="edition-chip">— ${stockText}</div>
+      <div class="row-foot">
+        <span class="price">${won(p.price)}</span>
+        <a class="btn btn-solid" href="#/product/${p.id}">${out?'대기 신청':'자세히 보기'}</a>
+      </div>
+    </div>
+  </article>`;
+}
+
 function viewProducts(){
   return `
   <section class="page">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">The Collection</span>
-        <div class="divider"></div>
-        <h1 class="page-title">컬렉션</h1>
-        <p class="page-sub">위대한 대가들의 창조 정신을 담은 세 가지 에디션.</p>
-      </div>
-      <div class="product-grid">
-        ${PRODUCTS.map(cardHTML).join('')}
+    <div class="collection-full">
+      <div class="collection-layout">
+        <aside class="collection-aside reveal">
+          <span class="eyebrow">The Collection</span>
+          <div class="divider"></div>
+          <h1 class="page-title">컬렉션</h1>
+          <p class="page-sub">위대한 대가들의 창조 정신을 담은 세 가지 에디션.</p>
+        </aside>
+        <div class="product-rows reveal">
+          ${PRODUCTS.map(rowHTML).join('')}
+        </div>
       </div>
     </div>
   </section>`;
@@ -663,15 +717,8 @@ function viewComplete(order){
   </section>`;
 }
 
-function viewAbout(){
+function philosophyBody(withCTA){
   return `
-  <section class="about-hero">
-    <div class="container reveal">
-      <div class="mark">.POIESIS</div>
-      <h1>다시, 창조하는 사람으로</h1>
-      <p class="greek">ποίησις — 없던 것을 세상에 불러내는 일</p>
-    </div>
-  </section>
   <section class="section" style="padding-top:30px">
     <div class="container prose reveal">
       <p><span class="lead">‘포이에시스(Poiesis)’는 고대 그리스어로 ‘만들어 냄’을 뜻합니다.</span> 존재하지 않던 무언가를 세상에 불러내는 행위 — 시(poetry)라는 단어 역시 여기에서 태어났습니다. 우리는 이 오래된 단어를, 매일 무언가를 만들어 내려는 모든 사람의 이름이라 믿습니다.</p>
@@ -686,9 +733,21 @@ function viewAbout(){
       <h3>우리의 약속</h3>
       <p class="lead">“Create, act, and sincerely listen to your inner signal. Follow it, and go on.”</p>
       <p>만들고, 행동하고, 내면의 신호에 진실하게 귀 기울일 것. 그리고 그것을 따라 계속 나아갈 것. POIESIS의 모든 노트는 이 한 문장을 위한 도구이자 약속입니다. 한 장씩 손으로 고른 가죽과, 한 권씩 새긴 표지로 그 약속에 무게를 더합니다.</p>
-      <div style="text-align:center;margin-top:50px"><a href="#/products" class="btn btn-solid btn-lg">컬렉션 만나보기</a></div>
+      ${withCTA?`<div style="text-align:center;margin-top:50px"><a href="#/products" class="btn btn-solid btn-lg">컬렉션 만나보기</a></div>`:''}
     </div>
   </section>`;
+}
+
+function viewAbout(){
+  return `
+  <section class="about-hero">
+    <div class="container reveal">
+      <div class="mark">.POIESIS</div>
+      <h1>다시, 창조하는 사람으로</h1>
+      <p class="greek">ποίησις — 없던 것을 세상에 불러내는 일</p>
+    </div>
+  </section>
+  ${philosophyBody(true)}`;
 }
 
 function viewNotFound(){
@@ -978,6 +1037,7 @@ function render(){
 
   app.innerHTML = html;
   window.scrollTo(0,0);
+  const hdr = $('#header'); if(hdr) hdr.classList.toggle('over-hero', route==='/');
   setActiveNav(route);
   bindViewEvents(parts);
   observeReveals();
@@ -1004,6 +1064,28 @@ function bindViewEvents(parts){
       subForm.reset();
     } else { $('#subMsg').textContent='올바른 이메일 주소를 입력해 주세요.'; }
   });
+
+  // cinematic philosophy (home): 이미지 페이드인 + 텍스트 스크롤 페이드아웃 (복수 섹션 지원)
+  if(window.__cineScroll){ window.removeEventListener('scroll', window.__cineScroll); window.__cineScroll=null; }
+  const cines = $$('.philos-cine');
+  if(cines.length){
+    const upd = ()=>{
+      const vh = window.innerHeight;
+      cines.forEach(cine=>{
+        const content = $('.pc-content', cine);
+        const r = cine.getBoundingClientRect();
+        cine.classList.toggle('in', r.top < vh*0.85 && r.bottom > 0);
+        const out = Math.min(1, Math.max(0, (-r.top) / (r.height*0.55)));
+        if(content){
+          content.style.opacity = String(Math.max(0, 1 - out));
+          content.style.transform = `translateY(${out*-26}px)`;
+        }
+      });
+    };
+    window.__cineScroll = upd;
+    window.addEventListener('scroll', upd, {passive:true});
+    upd();
+  }
 
   // product detail
   if(parts[0]==='product'){
