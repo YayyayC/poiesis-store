@@ -6,80 +6,54 @@
 /* ---------------- DATA ---------------- */
 const FREE_SHIP = 150000;
 const SHIP_FEE  = 3500;
-const EDITION   = 33;   // 에디션당 한정 수량
-const BUY_LIMIT = 2;    // 1인 구매 제한(한정판 공정 분배)
+const SALES_OPEN = false;      // 아직 판매 전 — 주문 오픈 시 true 로 변경
+const TOTAL_PAGES = 1000;      // 속지 총 페이지 (250p × 4권 세트)
+
+const INSERTS = ['베이지','실버','화이트'];   // 속지 색상 (주문자 선택)
+const BANDS   = ['롱','숏'];                  // 펜홀더 밴드 (증정 · 주문자 선택)
 
 const PRODUCTS = [
   {
     id:'vinci',
     name:'Vinci',
     kr:'다빈치 에디션',
-    price:168000,
-    badge:'PRE-ORDER',
+    price:330000,
+    badge:'COMING SOON',
     available:false,
-    sold0:19,
-    tagline:'관찰하는 자의 노트',
-    short:'끝없는 호기심으로 세계를 해부한 만능인. 비트루비안의 비율과 필사본의 결을 표지에 새깁니다.',
+    tagline:'관찰하는 자의 커버',
+    short:'비트루비안 인간과 거울 글씨 필사본을 새긴 풀그레인 가죽 커버. 1,000페이지를 향한 여정의 시작.',
     images:['assets/img/vinci-cover.svg','assets/img/cover-poster.svg'],
-    colors:[{name:'Noir',hex:'#15120d'},{name:'Cognac',hex:'#6b4a2f'}],
     desc:[
-      '레오나르도 다 빈치는 화가이자 해부학자였고, 공학자이자 음악가였습니다. 그의 노트는 분야의 경계를 모른 채 흘러갔습니다 — 물의 소용돌이 옆에 새의 날개가, 인체의 비율 옆에 비행 기계의 스케치가 함께 놓였습니다.',
-      'Vinci 에디션의 표지에는 비트루비안적 비율과 거울 글씨로 쓰인 필사본의 결이 골드 포일로 각인됩니다. 한 권 안에서 여러 분야를 넘나드는 당신의 사고를 위해 설계되었습니다.',
-      '※ 현재 제작 준비 중인 에디션으로, 사전 예약을 받고 있습니다. 표지 이미지는 디자인 콘셉트이며 실제 제품과 다를 수 있습니다.'
-    ]
-  },
-  {
-    id:'dostoevsky',
-    name:'Dostoevsky',
-    kr:'도스토옙스키 에디션',
-    price:168000,
-    badge:'SIGNATURE',
-    available:true,
-    sold0:21,
-    tagline:'심연을 응시하는 자의 노트',
-    short:'정교회 십자가와 작가의 초상, 그리고 빼곡한 필사본의 결. 인간의 가장 깊은 질문을 담기 위한 한 권.',
-    images:[
-      'assets/img/dostoevsky-hero.jpg',
-      'assets/img/dostoevsky-cover.jpg',
-      'assets/img/dostoevsky-strap.jpg',
-      'assets/img/dostoevsky-pair.jpg',
-      'assets/img/dostoevsky-detail.jpg',
-      'assets/img/cover-poster.svg'
-    ],
-    colors:[{name:'Cognac',hex:'#6b4a2f'},{name:'Espresso',hex:'#2e2017'}],
-    desc:[
-      '표도르 도스토옙스키는 인간 영혼의 가장 어두운 골짜기까지 내려가, 그곳에서 신앙과 자유, 죄와 구원을 길어 올렸습니다. 그의 문장은 늘 심연의 가장자리에서 쓰였습니다.',
-      'Dostoevsky 에디션은 실제로 제작된 시그니처 시제품입니다. 풀그레인 가죽 위에 정교회 십자가와 작가의 초상, 그리고 그의 육필을 떠올리게 하는 필사본의 결을 레이저로 새겼습니다. 뒷면에는 POIESIS의 엠보싱 마크가 조용히 자리합니다.',
-      '깊은 사유를 멈추지 않으려는 사람, 자신의 내면을 끝까지 따라가려는 사람을 위한 노트입니다.'
+      '레오나르도 다 빈치는 보고 느끼고 관찰한 모든 것을 노트 위에 쏟아냈습니다. 약 13,000페이지에 이르는 그의 기록은, 천재가 결과가 아니라 멈추지 않는 태도였음을 보여줍니다.',
+      '다빈치 에디션의 커버에는 비트루비안적 인체 비율과 거울 글씨로 쓰인 필사본의 결이 새겨집니다. 그 창조의 정신을 매일 손끝에서 이어가도록.',
+      '커버 안에는 총 1,000페이지(250p × 4권)의 속지가 한 세트로 담깁니다. 다 빈치처럼, 마음껏 써 내려가세요.'
     ]
   },
   {
     id:'origin',
     name:'Origin',
     kr:'오리진',
-    price:148000,
-    badge:null,
-    available:true,
-    sold0:8,
-    tagline:'아직 쓰이지 않은 노트',
-    short:'어떤 각인도 없는 순수한 풀그레인 가죽. POIESIS의 엠보싱 마크 하나만을 남긴, 가장 본질적인 한 권.',
+    price:298000,
+    badge:'COMING SOON',
+    available:false,
+    tagline:'아직 쓰이지 않은 커버',
+    short:'어떤 각인도 없이 ‘Poiesis’ 문구만 남긴 가장 본질적인 풀그레인 가죽 커버. 당신 자신이 곧 대가가 되는 자리.',
     images:['assets/img/origin-emboss.jpg','assets/img/cover-poster.svg'],
-    colors:[{name:'Cognac',hex:'#6b4a2f'},{name:'Espresso',hex:'#2e2017'}],
     desc:[
-      '어떤 대가의 흔적도 새기지 않은, 가장 정직한 형태의 POIESIS입니다. 표지에는 오직 작은 엠보싱 마크 하나만이 남아 있습니다.',
-      '창조는 빈 페이지에서 시작됩니다. Origin은 그 시작 자체를 위한 노트입니다 — 당신의 손이 닿기 전까지는 아무것도 정해지지 않은, 순수한 가능성의 한 권.',
-      'Vinci와 Dostoevsky 에디션과 동일한 가죽·제본·구성을 공유하며, 표지의 각인만을 덜어냈습니다.'
+      '어떤 대가의 흔적도 새기지 않은, 가장 정직한 형태의 POIESIS입니다. 커버에는 오직 브랜드 문구와 시그널 마크만이 조용히 자리합니다.',
+      '창조는 빈 페이지에서 시작됩니다. Origin은 그 시작 자체를 위한 커버입니다 — 당신의 손이 닿기 전까지는 아무것도 정해지지 않은, 순수한 가능성.',
+      '다빈치 에디션과 동일한 가죽·제본·구성(1,000페이지 4권 세트)을 공유하며, 커버의 각인만을 덜어냈습니다.'
     ]
   }
 ];
 
 const SPECS = [
-  ['사이즈','A5 · 148 × 210 mm'],
-  ['페이지','192p · 100gsm 도트 그리드'],
-  ['가죽','이탈리아산 베지터블 풀그레인'],
-  ['제본','라이플랫 양장 + 가죽 밴드'],
-  ['구성','노트 · 전용 펜 · 밴드 · 기프트 박스'],
-  ['제작','소량 핸드메이드 · Seoul']
+  ['구성','가죽 커버 + 속지 4권(총 1,000p) + 펜홀더 밴드'],
+  ['속지','250페이지 × 4권 · 총 1,000페이지'],
+  ['속지 색상','베이지 · 실버 · 화이트 (택1)'],
+  ['펜홀더 밴드','롱 · 숏 (택1, 증정)'],
+  ['가죽','베지터블 풀그레인'],
+  ['제작','핸드메이드 · Seoul']
 ];
 
 const PAYMENTS = [
@@ -133,21 +107,15 @@ function saveCart(c){
   try{ localStorage.setItem(CART_KEY, JSON.stringify(c)); }catch(e){}
   updateCartCount();
 }
-function cartKey(id,color){ return id+'::'+color; }
-function addToCart(id,color,qty){
-  const rem = remaining(id);
-  const already = inCartQty(id);
-  const maxAdd = Math.max(0, Math.min(rem - already, BUY_LIMIT - already));
-  if(maxAdd <= 0){
-    toast(rem - already <= 0 ? '이 에디션은 모두 소진되었습니다.' : `한정판은 1인 ${BUY_LIMIT}권까지 구매할 수 있습니다.`);
-    return false;
-  }
-  qty = Math.max(1, Math.min(qty, maxAdd));
+function cartKey(id,opts){ return id+'::'+(opts.insert||'')+'::'+(opts.band||''); }
+function addToCart(id,opts,qty){
+  if(!SALES_OPEN){ toast('곧 주문이 열립니다. 출시 알림을 신청해 주세요.'); return false; }
+  qty = Math.max(1, Math.min(qty||1, 99));
   const cart = getCart();
-  const k = cartKey(id,color);
+  const k = cartKey(id,opts);
   const found = cart.find(i=>i.key===k);
   if(found) found.qty += qty;
-  else cart.push({key:k,id,color,qty});
+  else cart.push({key:k,id,insert:opts.insert,band:opts.band,qty});
   saveCart(cart);
   return true;
 }
@@ -155,9 +123,7 @@ function setQty(key,qty){
   let cart = getCart();
   const it = cart.find(i=>i.key===key);
   if(!it) return;
-  const cap = Math.min(BUY_LIMIT, remaining(it.id));
-  qty = Math.max(1, Math.min(qty, cap));
-  it.qty = qty;
+  it.qty = Math.max(1, Math.min(qty, 99));
   saveCart(cart);
 }
 function removeItem(key){
@@ -176,22 +142,6 @@ function updateCartCount(){
   el.classList.toggle('show', n>0);
 }
 
-/* ---------------- STOCK (limited edition, 33 each) ---------------- */
-const STOCK_KEY = 'poiesis_stock_v1';
-function getStock(){ try{ return JSON.parse(localStorage.getItem(STOCK_KEY))||{}; }catch(e){ return {}; } }
-function soldCount(id){
-  if(SERVER.mode && SERVER.products[id]) return SERVER.products[id].sold;
-  const s = getStock();
-  if(id in s) return s[id];
-  const p = getProduct(id); return p ? (p.sold0||0) : 0;
-}
-function remaining(id){ return Math.max(0, EDITION - soldCount(id)); }
-function inCartQty(id){ return getCart().filter(i=>i.id===id).reduce((s,i)=>s+i.qty,0); }
-function addSold(id,n){
-  const s = getStock();
-  s[id] = soldCount(id) + n;
-  try{ localStorage.setItem(STOCK_KEY, JSON.stringify(s)); }catch(e){}
-}
 
 /* ---------------- AUTH (localStorage demo) ---------------- */
 const SESSION_KEY = 'poiesis_session_v1';
@@ -247,7 +197,7 @@ function viewHome(){
     <div class="vh-text reveal">
       <span class="eyebrow">Inspired by the Masters</span>
       <h1>THE MASTERS<br>COLLECTION</h1>
-      <p class="vh-sub">한 장씩 손으로 고른 가죽, 에디션당 단 ${EDITION}권. 위대한 대가들의 창조 정신을 담은 핸드메이드 노트.</p>
+      <p class="vh-sub">한 장씩 손으로 고른 풀그레인 가죽 커버, 1,000페이지의 속지. 위대한 대가들의 창조 정신을 담은 핸드메이드 노트.</p>
       <div class="vh-actions">
         <a href="#/products" class="btn btn-solid">컬렉션 보기</a>
         <a href="#/about" class="btn">브랜드 이야기</a>
@@ -305,7 +255,7 @@ function viewHome(){
   <section style="padding:0">
     <div class="container" style="padding-top:64px;padding-bottom:64px">
       <div class="trust-row reveal">
-        <div class="t"><div class="ic">✦</div><div class="tl">에디션당 33권</div><div class="ts">고유 넘버 정품 보증</div></div>
+        <div class="t"><div class="ic">✦</div><div class="tl">1,000페이지 4권 세트</div><div class="ts">다작을 위한 충분한 분량</div></div>
         <div class="t"><div class="ic">⤳</div><div class="tl">무료 배송</div><div class="ts">15만 원 이상 구매 시</div></div>
         <div class="t"><div class="ic">↺</div><div class="tl">14일 교환·반품</div><div class="ts">미사용 시 안심 반품</div></div>
         <div class="t"><div class="ic">⌘</div><div class="tl">전용 펜·기프트 박스</div><div class="ts">모든 에디션 기본 포함</div></div>
@@ -324,7 +274,7 @@ function viewHome(){
       <div class="benefit-grid reveal">
         <div class="benefit"><div class="ic">✦</div><h4>이탈리아산 풀그레인 가죽</h4><p>보급형 가죽이 아닌, 한 장씩 손으로 고른 베지터블 풀그레인. 쓸수록 깊어지는 파티나가 시간을 기록합니다.</p></div>
         <div class="benefit"><div class="ic">▤</div><h4>180도 펼쳐지는 라이플랫 제본</h4><p>어느 페이지에서도 책이 닫히지 않습니다. 100gsm 도트 그리드 192p — 만년필 번짐이 적은 지질.</p></div>
-        <div class="benefit"><div class="ic">№</div><h4>고유 넘버 정품 보증</h4><p>에디션당 33권. 모든 노트에 No.○○/33 시리얼과 정품 보증서가 동봉되어, 단 하나뿐인 소장 가치를 더합니다.</p></div>
+        <div class="benefit"><div class="ic">№</div><h4>1,000페이지의 여정</h4><p>250페이지 × 4권, 총 1,000페이지의 속지 세트. 다 빈치가 그랬듯 멈추지 않고 써 내려갈 수 있도록, 충분하고도 남는 분량을 담았습니다.</p></div>
         <div class="benefit"><div class="ic">❏</div><h4>선물 그대로, 완성된 구성</h4><p>전용 펜·가죽 밴드·기프트 박스가 기본 포함. 받는 순간 그 자체로 완결된 선물이 됩니다.</p></div>
       </div>
     </div>
@@ -366,9 +316,9 @@ function viewHome(){
         <p>평점 4.9 / 5.0 · 초기 에디션 구매자 후기</p>
       </div>
       <div class="reviews">
-        <div class="review reveal"><div class="stars">★★★★★</div><div class="body">“다이어리라기보다 작은 작품을 받은 기분. 넘버가 새겨진 보증서까지 보고 선물한 친구가 정말 좋아했어요.”</div><div class="who"><b>김＊은</b> · Dostoevsky Edition <span class="vbadge">✓ 구매 확인</span></div></div>
-        <div class="review reveal"><div class="stars">★★★★★</div><div class="body">“가죽 질감이 사진보다 훨씬 좋아요. 180도로 펼쳐져서 필기할 때 손목이 편하고, 만년필도 안 번집니다.”</div><div class="who"><b>이＊호</b> · Origin <span class="vbadge">✓ 구매 확인</span></div></div>
-        <div class="review reveal"><div class="stars">★★★★★</div><div class="body">“33권 한정이라는 점이 마음에 들었어요. 흔한 노트가 아니라 ‘내 번호’가 있다는 느낌. 다음 에디션도 기다립니다.”</div><div class="who"><b>정＊아</b> · Dostoevsky Edition <span class="vbadge">✓ 구매 확인</span></div></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><div class="body">“다이어리라기보다 작은 작품을 받은 기분. 커버의 비트루비안 각인이 정말 디테일해서 선물한 친구가 좋아했어요.”</div><div class="who"><b>김＊은</b> · Vinci <span class="vbadge">✓ 구매 확인</span></div></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><div class="body">“가죽 질감이 사진보다 훨씬 좋아요. 속지도 만년필이 안 번지고, 무엇보다 1,000페이지라 마음 편히 막 쓰게 돼요.”</div><div class="who"><b>이＊호</b> · Origin <span class="vbadge">✓ 구매 확인</span></div></div>
+        <div class="review reveal"><div class="stars">★★★★★</div><div class="body">“커버 하나에 속지를 갈아 끼우는 구조라 오래 쓸 수 있어 좋아요. 속지 색도 고를 수 있고, 밴드 증정도 센스 있네요.”</div><div class="who"><b>정＊아</b> · Vinci <span class="vbadge">✓ 구매 확인</span></div></div>
       </div>
     </div>
   </section>
@@ -388,44 +338,31 @@ function viewHome(){
 }
 
 function cardHTML(p){
-  const rem = remaining(p.id);
-  const out = rem<=0;
-  const badge = out ? 'SOLD OUT' : p.badge;
-  const badgeCls = out ? 'badge sold' : 'badge';
-  const stockText = p.available
-    ? (out ? '이번 에디션 품절' : `${EDITION}권 한정 · 남은 ${rem}권`)
-    : (out ? '예약 마감' : `${EDITION}권 한정 · 예약 가능 ${rem}권`);
   return `
   <a class="product-card" href="#/product/${p.id}">
     <div class="media">
-      ${badge?`<span class="${badgeCls}">${badge}</span>`:''}
+      ${p.badge?`<span class="badge">${p.badge}</span>`:''}
       <img src="${p.images[0]}" alt="${esc(p.kr)}" loading="lazy">
     </div>
     <div class="body">
       <div class="kr">${esc(p.kr)}</div>
       <h3>${p.name}</h3>
       <p class="desc">${esc(p.short)}</p>
-      <div class="edition-chip" style="margin-bottom:16px">— ${stockText}</div>
+      <div class="edition-chip" style="margin-bottom:16px">— 1,000페이지 4권 세트 구성</div>
       <div class="foot">
         <span class="price">${won(p.price)}</span>
-        <span class="arrow">${out?'대기 신청 →':'자세히 →'}</span>
+        <span class="arrow">자세히 →</span>
       </div>
     </div>
   </a>`;
 }
 
 function rowHTML(p, i){
-  const rem = remaining(p.id);
-  const out = rem<=0;
-  const badge = out ? 'SOLD OUT' : p.badge;
-  const stockText = p.available
-    ? (out ? '이번 에디션 품절' : `${EDITION}권 한정 · 남은 ${rem}권`)
-    : (out ? '예약 마감' : `${EDITION}권 한정 · 예약 가능 ${rem}권`);
   const num = String(i+1).padStart(2,'0');
   return `
   <article class="product-row">
     <a class="row-media" href="#/product/${p.id}" aria-label="${esc(p.name)}">
-      ${badge?`<span class="badge${out?' sold':''}">${badge}</span>`:''}
+      ${p.badge?`<span class="badge">${p.badge}</span>`:''}
       <img src="${p.images[0]}" alt="${esc(p.kr)}" loading="lazy">
       <span class="row-num">${num}</span>
     </a>
@@ -434,10 +371,10 @@ function rowHTML(p, i){
       <h3>${p.name}</h3>
       <p class="tagline">${esc(p.tagline)}</p>
       <p class="row-desc">${esc(p.short)}</p>
-      <div class="edition-chip">— ${stockText}</div>
+      <div class="edition-chip">— 1,000페이지 (250p × 4권) 세트 구성</div>
       <div class="row-foot">
         <span class="price">${won(p.price)}</span>
-        <a class="btn btn-solid" href="#/product/${p.id}">${out?'대기 신청':'자세히 보기'}</a>
+        <a class="btn btn-solid" href="#/product/${p.id}">자세히 보기</a>
       </div>
     </div>
   </article>`;
@@ -452,7 +389,7 @@ function viewProducts(){
           <span class="eyebrow">The Collection</span>
           <div class="divider"></div>
           <h1 class="page-title">컬렉션</h1>
-          <p class="page-sub">위대한 대가들의 창조 정신을 담은 세 가지 에디션.</p>
+          <p class="page-sub">위대한 대가들의 창조 정신을 담은 가죽 커버. 1,000페이지를 향한 여정.</p>
         </aside>
         <div class="product-rows reveal">
           ${PRODUCTS.map(rowHTML).join('')}
@@ -466,20 +403,7 @@ function viewProduct(id){
   const p = getProduct(id);
   if(!p) return viewNotFound();
   const multi = p.images.length>1;
-  const rem = remaining(p.id);
-  const out = rem<=0;
-  const sold = soldCount(p.id);
-  const pct = Math.round(sold/EDITION*100);
-  const low = !out && rem<=10;
-  const stockBlock = `
-    <div class="stock${low?' stock-low':''}">
-      <div class="stock-meta">
-        <span class="left">${out?'이번 에디션 소진':`남은 ${rem}권`} <span style="color:var(--muted);font-weight:400;font-size:.85rem">/ ${EDITION}권 한정</span></span>
-        <span>${p.available?`<b>${sold}권</b> 판매됨`:`<b>${sold}권</b> 예약됨`}</span>
-      </div>
-      <div class="stock-bar"><i style="width:${Math.max(pct,4)}%"></i></div>
-      ${low?`<div style="margin-top:8px;font-size:.8rem;color:var(--danger)">⚠ 마지막 ${rem}권 — 이 에디션은 곧 마감됩니다.</div>`:''}
-    </div>`;
+  const soon = !p.available || !SALES_OPEN;   // 아직 판매 전 = 출시 예정
   return `
   <section class="pd">
     <div class="container">
@@ -496,39 +420,45 @@ function viewProduct(id){
           <div class="kr">${esc(p.kr)}</div>
           <h1>${p.name}</h1>
           <p class="tagline">${esc(p.tagline)}</p>
-          <div class="pd-price">${won(p.price)} <small>· 무이자 할부 가능 · 에디션당 ${EDITION}권 한정</small></div>
-          ${stockBlock}
-          ${!p.available?`<div class="notice"><span>✦</span><span>현재 사전 예약 중인 에디션입니다. 결제 시 예약 주문으로 접수되며, 제작 완료 후 예약 순서대로 배송됩니다.</span></div>`:''}
+          <div class="pd-price">${won(p.price)} <small>· 1,000페이지 4권 세트 구성</small></div>
+          ${soon?`<div class="notice"><span>✦</span><span>현재 출시 준비 중입니다. 곧 주문이 열려요 — 알림을 신청하시면 가장 먼저 안내드릴게요.</span></div>`:''}
           <div class="pd-desc">${p.desc.map(d=>`<p>${esc(d)}</p>`).join('')}</div>
 
           <div class="opt-group">
-            <div class="opt-label">가죽 컬러 <b id="colorName">${esc(p.colors[0].name)}</b></div>
-            <div class="swatches" id="swatches">
-              ${p.colors.map((c,i)=>`<button class="swatch${i===0?' active':''}" data-color="${esc(c.name)}">
-                <span class="dot" style="background:${c.hex}"></span>${esc(c.name)}</button>`).join('')}
+            <div class="opt-label">속지 색상 <b id="insertName">${esc(INSERTS[0])}</b></div>
+            <div class="swatches" id="inserts">
+              ${INSERTS.map((c,i)=>`<button class="swatch${i===0?' active':''}" data-insert="${esc(c)}">${esc(c)}</button>`).join('')}
             </div>
           </div>
 
           <div class="opt-group">
-            <div class="opt-label">수량 <b>1인 ${BUY_LIMIT}권 한정</b></div>
+            <div class="opt-label">펜홀더 밴드 <b style="color:var(--gold-deep)">증정</b></div>
+            <div class="swatches" id="bands">
+              ${BANDS.map((c,i)=>`<button class="swatch${i===0?' active':''}" data-band="${esc(c)}">${esc(c)}</button>`).join('')}
+            </div>
+          </div>
+
+          ${SALES_OPEN?`
+          <div class="opt-group">
+            <div class="opt-label">수량</div>
             <div class="qty" data-qty>
               <button type="button" data-step="-1">−</button>
               <input id="qtyInput" type="text" value="1" inputmode="numeric" aria-label="수량">
               <button type="button" data-step="1">+</button>
             </div>
-          </div>
+          </div>`:''}
 
           <div class="pd-actions">
-          ${out
-            ? `<button class="btn btn-solid btn-block" id="waitBtn">품절 · 다음 에디션 알림 신청</button>`
-            : `<button class="btn btn-solid" id="addBtn" data-id="${p.id}">${p.available?'장바구니에 담기':'사전 예약하기'}</button>
-               <button class="btn" id="buyNow" data-id="${p.id}">${p.available?'바로 구매':'바로 예약'}</button>`}
+          ${SALES_OPEN
+            ? `<button class="btn btn-solid" id="addBtn" data-id="${p.id}">장바구니에 담기</button>
+               <button class="btn" id="buyNow" data-id="${p.id}">바로 구매</button>`
+            : `<button class="btn btn-solid btn-block" id="notifyBtn">출시 알림 신청</button>`}
           </div>
 
           <div class="pd-meta">
-            <div><span class="ic">✦</span><span>15만원 이상 구매 시 무료 배송 · 3–5 영업일 내 출고</span></div>
-            <div><span class="ic">✦</span><span>전용 펜 · 가죽 밴드 · 기프트 박스 기본 포함</span></div>
-            <div><span class="ic">✦</span><span>수령 후 14일 이내 교환 · 반품 가능</span></div>
+            <div><span class="ic">✦</span><span>가죽 커버 + 속지 4권(총 1,000p) + 펜홀더 밴드 증정</span></div>
+            <div><span class="ic">✦</span><span>속지 색상(베이지·실버·화이트)과 밴드 길이를 주문 시 선택</span></div>
+            <div><span class="ic">✦</span><span>15만원 이상 무료 배송 · 수령 후 14일 이내 교환·반품</span></div>
           </div>
         </div>
       </div>
@@ -543,7 +473,7 @@ function viewProduct(id){
         <div>
           <h3>Care</h3>
           <p style="color:var(--muted)">천연 가죽은 사용할수록 고유의 색과 광택(파티나)이 깊어집니다. 물기는 마른 천으로 가볍게 닦아내고, 직사광선과 장시간의 습기는 피해 주세요. 가끔 무색 가죽 왁스를 얇게 발라 주면 오래도록 결을 유지할 수 있습니다.</p>
-          <p style="color:var(--muted);margin-top:14px">각인된 표지의 미세한 결과 색 편차는 천연 가죽과 수작업의 특성으로, 모든 노트가 단 하나뿐인 이유입니다.</p>
+          <p style="color:var(--muted);margin-top:14px">커버의 미세한 결과 색 편차는 천연 가죽과 수작업의 특성으로, 모든 커버가 단 하나뿐인 이유입니다.</p>
         </div>
       </div>
     </div>
@@ -556,7 +486,7 @@ function viewCart(){
     return `<section class="page"><div class="container"><div class="empty reveal">
       <div class="icon">✦</div>
       <h3>장바구니가 비어 있습니다</h3>
-      <p>아직 담긴 노트가 없습니다. 세 명의 대가를 만나보세요.</p>
+      <p>아직 담긴 제품이 없습니다. 컬렉션을 만나보세요.</p>
       <a href="#/products" class="btn btn-solid">컬렉션 보기</a>
     </div></div></section>`;
   }
@@ -593,7 +523,7 @@ function cartLineHTML(it){
     <a class="thumb" href="#/product/${p.id}" style="grid-area:thumb"><img src="${p.images[0]}" alt=""></a>
     <div style="grid-area:info">
       <div class="ttl">${p.name} <span style="font-size:.9rem;color:var(--muted)">· ${esc(p.kr)}</span></div>
-      <div class="opt">컬러: ${esc(it.color)}</div>
+      <div class="opt">속지: ${esc(it.insert||'-')} · 밴드: ${esc(it.band||'-')}</div>
       <div class="qty" data-cartqty data-key="${it.key}">
         <button type="button" data-step="-1">−</button>
         <input type="text" value="${it.qty}" inputmode="numeric" aria-label="수량">
@@ -676,7 +606,7 @@ function viewCheckout(){
             ${cart.map(it=>{const p=getProduct(it.id);return `
             <div class="co-item">
               <div class="thumb"><img src="${p.images[0]}" alt=""></div>
-              <div class="meta"><div class="nm">${p.name}</div><div class="q">${esc(it.color)} · 수량 ${it.qty}</div></div>
+              <div class="meta"><div class="nm">${p.name}</div><div class="q">속지 ${esc(it.insert||'-')} · 밴드 ${esc(it.band||'-')} · 수량 ${it.qty}</div></div>
               <div class="pr">${won(p.price*it.qty)}</div>
             </div>`;}).join('')}
           </div>
@@ -706,11 +636,9 @@ function viewComplete(order){
           <div class="row"><span>받는 분</span><b>${esc(order.name)}</b></div>
           <div class="row"><span>배송지</span><b>${esc(order.address)}</b></div>
           <div class="row"><span>결제 수단</span><b>${esc(order.payName)}</b></div>
-          ${order.editions&&order.editions.length?`<div class="row" style="border-top:1px solid var(--line);margin-top:10px;padding-top:16px"><span>에디션 넘버</span><b style="text-align:right">${order.editions.map(e=>`${esc(e.name)} ${e.nums.map(n=>'No.'+n).join(', ')} / ${EDITION}`).join('<br>')}</b></div>`:''}
           <div class="row" style="border-top:1px solid var(--line);margin-top:10px;padding-top:16px"><span>결제 금액</span><b style="font-family:var(--serif);font-size:1.3rem;color:var(--gold-bright)">${won(order.total)}</b></div>
         </div>
-        <p style="color:var(--gold-deep);font-size:.88rem">각 노트에는 위 고유 에디션 넘버가 새겨진 정품 보증서가 동봉됩니다.</p>
-        <p style="color:var(--muted-2);font-size:.86rem">${order.hasPreorder?'사전 예약 상품이 포함되어 있어, 제작 완료 후 순차적으로 배송됩니다.':'3–5 영업일 내에 출고되며, 송장 번호는 메일로 안내드립니다.'}</p>
+        <p style="color:var(--muted-2);font-size:.86rem">${order.hasPreorder?'출시 준비 중인 상품이 포함되어 있어, 제작 완료 후 순차적으로 배송됩니다.':'3–5 영업일 내에 출고되며, 송장 번호는 메일로 안내드립니다.'}</p>
         <div style="margin-top:36px"><a href="#/products" class="btn btn-solid">컬렉션으로 돌아가기</a></div>
       </div>
     </div>
@@ -1090,7 +1018,7 @@ function bindViewEvents(parts){
   // product detail
   if(parts[0]==='product'){
     const p = getProduct(parts[1]); if(!p) return;
-    let color = p.colors[0].name;
+    const opts = { insert: INSERTS[0], band: BANDS[0] };
 
     $$('.pd-thumb').forEach(t=>t.addEventListener('click',()=>{
       $$('.pd-thumb').forEach(x=>x.classList.remove('active'));
@@ -1098,30 +1026,34 @@ function bindViewEvents(parts){
       $('#pdMain').src = t.dataset.img;
     }));
 
-    $$('#swatches .swatch').forEach(s=>s.addEventListener('click',()=>{
-      $$('#swatches .swatch').forEach(x=>x.classList.remove('active'));
+    // 속지 색상 선택
+    $$('#inserts .swatch').forEach(s=>s.addEventListener('click',()=>{
+      $$('#inserts .swatch').forEach(x=>x.classList.remove('active'));
       s.classList.add('active');
-      color = s.dataset.color;
-      $('#colorName').textContent = color;
+      opts.insert = s.dataset.insert;
+      const lbl = $('#insertName'); if(lbl) lbl.textContent = opts.insert;
+    }));
+    // 펜홀더 밴드 선택
+    $$('#bands .swatch').forEach(s=>s.addEventListener('click',()=>{
+      $$('#bands .swatch').forEach(x=>x.classList.remove('active'));
+      s.classList.add('active');
+      opts.band = s.dataset.band;
     }));
 
-    const cap = Math.max(1, Math.min(BUY_LIMIT, remaining(p.id)));
     const qtyInput = $('#qtyInput');
-    bindStepper($('[data-qty]'), qtyInput, (v)=>{
-      if(v>cap){ qtyInput.value=cap; toast(`한정판은 1인 ${BUY_LIMIT}권까지 구매할 수 있습니다.`); }
-    });
-    const getQ = ()=>Math.max(1,Math.min(cap,parseInt(qtyInput.value,10)||1));
+    if(qtyInput) bindStepper($('[data-qty]'), qtyInput);
+    const getQ = ()=>qtyInput ? Math.max(1,parseInt(qtyInput.value,10)||1) : 1;
 
     const addEl = $('#addBtn');
     if(addEl) addEl.addEventListener('click',()=>{
-      if(addToCart(p.id,color,getQ())) toast(`${p.name} · ${color} 장바구니에 담았습니다.`);
+      if(addToCart(p.id,opts,getQ())) toast(`${p.name} · 속지 ${opts.insert} 장바구니에 담았습니다.`);
     });
     const buyEl = $('#buyNow');
     if(buyEl) buyEl.addEventListener('click',()=>{
-      if(addToCart(p.id,color,getQ())) location.hash='#/checkout';
+      if(addToCart(p.id,opts,getQ())) location.hash='#/checkout';
     });
-    const waitEl = $('#waitBtn');
-    if(waitEl) waitEl.addEventListener('click',()=>toast('다음 에디션 오픈 시 가장 먼저 알려드릴게요.'));
+    const notifyEl = $('#notifyBtn');
+    if(notifyEl) notifyEl.addEventListener('click',()=>toast('출시되면 가장 먼저 알려드릴게요. 감사합니다 ✦'));
   }
 
   // cart line steppers + remove
@@ -1329,7 +1261,7 @@ async function onCheckoutSubmit(e){
     email:f.elements['email'].value,
     address:`(${f.elements['postal'].value}) ${f.elements['address'].value} ${f.elements['address2'].value}`.trim(),
   };
-  const items = cart.map(it=>({ id:it.id, color:it.color, qty:it.qty }));
+  const items = cart.map(it=>({ id:it.id, insert:it.insert, band:it.band, qty:it.qty }));
 
   /* ---- 서버 모드: 실제 주문 ---- */
   if(SERVER.mode){
@@ -1369,15 +1301,6 @@ async function onCheckoutSubmit(e){
 
   /* ---- 데모 모드(서버 없음): 로컬 처리 ---- */
   const hasPreorder = cart.some(i=>{const p=getProduct(i.id);return p&&!p.available;});
-  const editions = [];
-  cart.forEach(it=>{
-    const p = getProduct(it.id);
-    const start = soldCount(it.id)+1;
-    const nums = [];
-    for(let i=0;i<it.qty;i++) nums.push(start+i);
-    addSold(it.id, it.qty);
-    editions.push({name:p.name, nums});
-  });
   const now = new Date();
   const pad = n=>String(n).padStart(2,'0');
   const no = 'PO-'+now.getFullYear()+pad(now.getMonth()+1)+pad(now.getDate())+'-'+
@@ -1385,7 +1308,7 @@ async function onCheckoutSubmit(e){
   lastOrder = {
     no, date:`${now.getFullYear()}.${pad(now.getMonth()+1)}.${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`,
     name:shipping.name, email:shipping.email, address:shipping.address,
-    payName, total:subtotal+ship, hasPreorder, editions
+    payName, total:subtotal+ship, hasPreorder
   };
   const u = getUser();
   if(u){
