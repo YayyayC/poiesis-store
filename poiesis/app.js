@@ -199,9 +199,9 @@ function viewHome(){
   return `
   <section class="video-hero">
     <div class="vh-text reveal">
-      <span class="eyebrow" data-edit="hero.eyebrow">Inspired by the Masters</span>
-      <h1 data-edit="hero.title">THE MASTERS<br>COLLECTION</h1>
-      <p class="vh-sub" data-edit="hero.sub">한 장씩 손으로 고른 풀그레인 가죽 커버, 1,000페이지의 속지. 위대한 대가들의 창조 정신을 담은 핸드메이드 노트.</p>
+      <span class="eyebrow">Inspired by the Masters</span>
+      <h1>THE MASTERS<br>COLLECTION</h1>
+      <p class="vh-sub">한 장씩 손으로 고른 풀그레인 가죽 커버, 1,000페이지의 속지. 위대한 대가들의 창조 정신을 담은 핸드메이드 노트.</p>
       <div class="vh-actions">
         <a href="#/products" class="btn btn-solid">컬렉션 보기</a>
         <a href="#/about" class="btn">브랜드 이야기</a>
@@ -211,19 +211,6 @@ function viewHome(){
       <video autoplay muted loop playsinline preload="metadata" poster="assets/img/vinci-film-home-poster.jpg">
         <source src="assets/img/vinci-film-home.mp4" type="video/mp4">
       </video>
-    </div>
-  </section>
-
-  <section class="philo-home reveal">
-    <div class="ph-inner">
-      <div class="ph-card">
-        <span class="eyebrow" data-edit="ourphilo.eyebrow">Our Philosophy</span>
-        <h2 data-edit="ourphilo.title">Our philosophy</h2>
-        <div class="ph-body" data-edit="ourphilo.body">
-          <p>여기에 우리의 철학을 직접 입력하세요. 오른쪽 아래 ‘✎ 편집’ 버튼을 켜면 이 글을 바로 타이핑해 고칠 수 있어요.</p>
-          <p>Create, act, and sincerely listen to your inner signal. Follow it, and go on.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -673,18 +660,18 @@ function philosophyBody(withCTA){
   return `
   <section class="section" style="padding-top:30px">
     <div class="container prose reveal">
-      <p><span class="lead">‘포이에시스(Poiesis)’는 고대 그리스어로 ‘만들어 냄’을 뜻합니다.</span> 존재하지 않던 무언가를 세상에 불러내는 행위 — 시(poetry)라는 단어 역시 여기에서 태어났습니다. 우리는 이 오래된 단어를, 매일 무언가를 만들어 내려는 모든 사람의 이름이라 믿습니다.</p>
-      <p>창조의 영혼은 특별한 누군가만의 것이 아닙니다. 다만 일상의 소음 속에서 쉽게 잠들 뿐입니다. POIESIS는 그 잠든 감각을, 다작이면서도 깊이 있었던 위대한 대가들의 손길을 빌려 다시 깨우려 합니다.</p>
-      <h3>왜 대가들인가</h3>
-      <p>다 빈치는 분야의 경계를 몰랐고, 도스토옙스키는 인간 영혼의 가장 깊은 곳까지 내려갔습니다. 이들의 공통점은 천재성이 아니라 태도였습니다 — 멈추지 않고 관찰하고, 의심하고, 써 내려갔다는 것. 우리는 그 태도를 노트 한 권의 표지에 새깁니다.</p>
+      <p data-edit="philo.p1"><span class="lead">‘포이에시스(Poiesis)’는 고대 그리스어로 ‘만들어 냄’을 뜻합니다.</span> 존재하지 않던 무언가를 세상에 불러내는 행위 — 시(poetry)라는 단어 역시 여기에서 태어났습니다. 우리는 이 오래된 단어를, 매일 무언가를 만들어 내려는 모든 사람의 이름이라 믿습니다.</p>
+      <p data-edit="philo.p2">창조의 영혼은 특별한 누군가만의 것이 아닙니다. 다만 일상의 소음 속에서 쉽게 잠들 뿐입니다. POIESIS는 그 잠든 감각을, 다작이면서도 깊이 있었던 위대한 대가들의 손길을 빌려 다시 깨우려 합니다.</p>
+      <h3 data-edit="philo.h1">왜 대가들인가</h3>
+      <p data-edit="philo.p3">다 빈치는 분야의 경계를 몰랐고, 도스토옙스키는 인간 영혼의 가장 깊은 곳까지 내려갔습니다. 이들의 공통점은 천재성이 아니라 태도였습니다 — 멈추지 않고 관찰하고, 의심하고, 써 내려갔다는 것. 우리는 그 태도를 노트 한 권의 표지에 새깁니다.</p>
       <div class="masters">
-        <div class="master"><div class="gk">Homo Universalis</div><h4>Leonardo da Vinci</h4><p>경계 없는 호기심으로 세계를 해부한 만능인. 관찰하고 연결하는 사고를 위해.</p></div>
-        <div class="master"><div class="gk">Психолог духа</div><h4>Fyodor Dostoevsky</h4><p>인간 영혼의 심연을 응시한 작가. 가장 깊은 질문을 멈추지 않으려는 사람을 위해.</p></div>
-        <div class="master"><div class="gk">Tabula Rasa</div><h4>Origin</h4><p>아직 아무것도 정해지지 않은 빈 페이지. 당신 자신이 곧 대가가 되는 자리.</p></div>
+        <div class="master"><div class="gk">Homo Universalis</div><h4 data-edit="master.1.name">Leonardo da Vinci</h4><p data-edit="master.1.desc">경계 없는 호기심으로 세계를 해부한 만능인. 관찰하고 연결하는 사고를 위해.</p></div>
+        <div class="master"><div class="gk">Психолог духа</div><h4 data-edit="master.2.name">Fyodor Dostoevsky</h4><p data-edit="master.2.desc">인간 영혼의 심연을 응시한 작가. 가장 깊은 질문을 멈추지 않으려는 사람을 위해.</p></div>
+        <div class="master"><div class="gk">Tabula Rasa</div><h4 data-edit="master.3.name">Origin</h4><p data-edit="master.3.desc">아직 아무것도 정해지지 않은 빈 페이지. 당신 자신이 곧 대가가 되는 자리.</p></div>
       </div>
-      <h3>우리의 약속</h3>
-      <p class="lead">“Create, act, and sincerely listen to your inner signal. Follow it, and go on.”</p>
-      <p>만들고, 행동하고, 내면의 신호에 진실하게 귀 기울일 것. 그리고 그것을 따라 계속 나아갈 것. POIESIS의 모든 노트는 이 한 문장을 위한 도구이자 약속입니다. 한 장씩 손으로 고른 가죽과, 한 권씩 새긴 표지로 그 약속에 무게를 더합니다.</p>
+      <h3 data-edit="philo.h2">우리의 약속</h3>
+      <p class="lead" data-edit="philo.promise">“Create, act, and sincerely listen to your inner signal. Follow it, and go on.”</p>
+      <p data-edit="philo.p4">만들고, 행동하고, 내면의 신호에 진실하게 귀 기울일 것. 그리고 그것을 따라 계속 나아갈 것. POIESIS의 모든 노트는 이 한 문장을 위한 도구이자 약속입니다. 한 장씩 손으로 고른 가죽과, 한 권씩 새긴 표지로 그 약속에 무게를 더합니다.</p>
       ${withCTA?`<div style="text-align:center;margin-top:50px"><a href="#/products" class="btn btn-solid btn-lg">컬렉션 만나보기</a></div>`:''}
     </div>
   </section>`;
@@ -695,8 +682,8 @@ function viewAbout(){
   <section class="about-hero">
     <div class="container reveal">
       <div class="mark">.POIESIS</div>
-      <h1>다시, 창조하는 사람으로</h1>
-      <p class="greek">ποίησις — 없던 것을 세상에 불러내는 일</p>
+      <h1 data-edit="about.title">다시, 창조하는 사람으로</h1>
+      <p class="greek" data-edit="about.greek">ποίησις — 없던 것을 세상에 불러내는 일</p>
     </div>
   </section>
   ${philosophyBody(true)}`;
@@ -993,8 +980,13 @@ function render(){
   setActiveNav(route);
   bindViewEvents(parts);
   observeReveals();
+  // 편집 컨트롤은 'Our Philosophy' 페이지에서만 노출
+  const editable = (route==='/about');
+  document.body.classList.toggle('editable-page', editable);
+  if(!editable) document.body.classList.remove('edit-on');
   hydrateEdits();      // 저장된 직접-편집 내용 반영
   applyEditState();    // 편집 모드 켜져 있으면 편집 가능 상태 유지
+  syncEditToggleLabel();
   closeMenu();
   updateCartCount();
   updateAuthUI();
@@ -1016,6 +1008,10 @@ function applyEditState(){
     el.setAttribute('contenteditable', on ? 'true' : 'false');
     if(on) el.setAttribute('spellcheck','false');
   });
+}
+function syncEditToggleLabel(){
+  const b = $('#editToggle'); if(!b) return;
+  b.textContent = document.body.classList.contains('edit-on') ? '✓ 편집 끝내기' : '✎ 편집';
 }
 function initEditMode(){
   // 떠다니는 컨트롤(렌더 사이에도 유지되도록 body에 한 번만 부착)
@@ -1041,13 +1037,12 @@ function initEditMode(){
     if(!el) return;
     localStorage.setItem(EDIT_PREFIX + el.dataset.edit, el.innerHTML);
   });
-  // Enter 시 새 블록 대신 줄바꿈만 (단일행 요소 보호)
+  // 제목/짧은 줄에서는 Enter로 줄이 깨지지 않게 보호 (문단(P)은 줄바꿈 허용)
   document.addEventListener('keydown', e=>{
     const el = e.target.closest && e.target.closest('[data-edit]');
     if(!el || !document.body.classList.contains('edit-on')) return;
-    if(e.key === 'Enter' && !el.classList.contains('ph-body') && el.dataset.edit!=='ourphilo.body'){
-      e.preventDefault();
-    }
+    const single = /^H[1-6]$/.test(el.tagName) || el.classList.contains('greek') || el.tagName==='SPAN';
+    if(e.key === 'Enter' && single) e.preventDefault();
   });
 
   $('#editExport').addEventListener('click',()=>{
