@@ -22,7 +22,12 @@ const PRODUCTS = [
     available:false,
     tagline:'관찰하는 자의 커버',
     short:'비트루비안 인간과 거울 글씨 필사본을 새긴 풀그레인 가죽 커버. 1,000페이지를 향한 여정의 시작.',
-    images:['assets/img/vinci-cover.svg','assets/img/cover-poster.svg'],
+    images:['assets/img/vinci-cover-real.jpg','assets/img/vinci-band.jpg','assets/img/vinci-pages.jpg','assets/img/cover-interior.jpg','assets/img/set-1000.jpg','assets/img/band-pair.jpg'],
+    videos:[
+      {src:'assets/img/vinci-film-hd.mp4', poster:'assets/img/vinci-film-hd-poster.jpg'},
+      {src:'assets/img/vinci-film-dark.mp4', poster:'assets/img/vinci-film-dark-poster.jpg'},
+      {src:'assets/img/vinci-film-bright.mp4', poster:'assets/img/vinci-film-bright-poster.jpg'}
+    ],
     desc:[
       '레오나르도 다 빈치는 보고 느끼고 관찰한 모든 것을 노트 위에 쏟아냈습니다. 약 13,000페이지에 이르는 그의 기록은, 천재가 결과가 아니라 멈추지 않는 태도였음을 보여줍니다.',
       '다빈치 에디션의 커버에는 비트루비안적 인체 비율과 거울 글씨로 쓰인 필사본의 결이 새겨집니다. 그 창조의 정신을 매일 손끝에서 이어가도록.',
@@ -38,7 +43,7 @@ const PRODUCTS = [
     available:false,
     tagline:'아직 쓰이지 않은 커버',
     short:'어떤 각인도 없이 ‘Poiesis’ 문구만 남긴 가장 본질적인 풀그레인 가죽 커버. 당신 자신이 곧 대가가 되는 자리.',
-    images:['assets/img/origin-emboss.jpg','assets/img/cover-poster.svg'],
+    images:['assets/img/origin-cover-real.jpg','assets/img/cover-interior.jpg','assets/img/insert-cover.jpg','assets/img/set-1000.jpg','assets/img/band-pair.jpg'],
     desc:[
       '어떤 대가의 흔적도 새기지 않은, 가장 정직한 형태의 POIESIS입니다. 커버에는 오직 브랜드 문구와 시그널 마크만이 조용히 자리합니다.',
       '창조는 빈 페이지에서 시작됩니다. Origin은 그 시작 자체를 위한 커버입니다 — 당신의 손이 닿기 전까지는 아무것도 정해지지 않은, 순수한 가능성.',
@@ -191,7 +196,6 @@ function toast(msg){
    ============================================================ */
 
 function viewHome(){
-  const feat = getProduct('dostoevsky');
   return `
   <section class="video-hero">
     <div class="vh-text reveal">
@@ -204,8 +208,8 @@ function viewHome(){
       </div>
     </div>
     <div class="vh-media">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/img/hero-poster.jpg">
-        <source src="assets/img/hero.mp4" type="video/mp4">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/img/vinci-film-hd-poster.jpg">
+        <source src="assets/img/vinci-film-hd.mp4" type="video/mp4">
       </video>
     </div>
   </section>
@@ -283,7 +287,7 @@ function viewHome(){
   <section class="section" style="padding-top:0">
     <div class="container">
       <div class="feature reverse">
-        <div class="feature-media reveal"><img src="assets/img/dostoevsky-detail.jpg" alt="가죽 표지 각인 디테일"></div>
+        <div class="feature-media reveal"><img src="assets/img/vinci-band.jpg" alt="가죽 커버 디테일"></div>
         <div class="feature-body reveal">
           <span class="eyebrow">Craftsmanship</span>
           <h2>한 장의 가죽, 하나의 이야기</h2>
@@ -402,7 +406,12 @@ function viewProducts(){
 function viewProduct(id){
   const p = getProduct(id);
   if(!p) return viewNotFound();
-  const multi = p.images.length>1;
+  const media = [
+    ...(p.videos||[]).map(v=>({type:'video', src:v.src, poster:v.poster})),
+    ...p.images.map(src=>({type:'img', src}))
+  ];
+  const multi = media.length>1;
+  const first = media[0];
   const soon = !p.available || !SALES_OPEN;   // 아직 판매 전 = 출시 예정
   return `
   <section class="pd">
@@ -412,9 +421,11 @@ function viewProduct(id){
       </div>
       <div class="pd-grid">
         <div class="pd-gallery reveal">
-          <div class="pd-main"><img id="pdMain" src="${p.images[0]}" alt="${esc(p.kr)}"></div>
-          ${multi?`<div class="pd-thumbs">${p.images.map((src,i)=>`
-            <div class="pd-thumb${i===0?' active':''}" data-img="${src}"><img src="${src}" alt=""></div>`).join('')}</div>`:''}
+          <div class="pd-main" id="pdMain">${first.type==='video'
+            ? `<video autoplay muted loop playsinline preload="metadata" poster="${first.poster}"><source src="${first.src}" type="video/mp4"></video>`
+            : `<img src="${first.src}" alt="${esc(p.kr)}">`}</div>
+          ${multi?`<div class="pd-thumbs">${media.map((m,i)=>`
+            <div class="pd-thumb${i===0?' active':''}${m.type==='video'?' is-video':''}" data-type="${m.type}" data-src="${m.src}" data-poster="${m.poster||''}"><img src="${m.type==='video'?m.poster:m.src}" alt="">${m.type==='video'?'<span class="play-ic">▶</span>':''}</div>`).join('')}</div>`:''}
         </div>
         <div class="pd-info reveal">
           <div class="kr">${esc(p.kr)}</div>
@@ -1023,7 +1034,12 @@ function bindViewEvents(parts){
     $$('.pd-thumb').forEach(t=>t.addEventListener('click',()=>{
       $$('.pd-thumb').forEach(x=>x.classList.remove('active'));
       t.classList.add('active');
-      $('#pdMain').src = t.dataset.img;
+      const main = $('#pdMain'); if(!main) return;
+      if(t.dataset.type==='video'){
+        main.innerHTML = `<video autoplay muted loop playsinline preload="metadata" poster="${t.dataset.poster}"><source src="${t.dataset.src}" type="video/mp4"></video>`;
+      } else {
+        main.innerHTML = `<img src="${t.dataset.src}" alt="">`;
+      }
     }));
 
     // 속지 색상 선택
