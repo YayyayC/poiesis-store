@@ -199,18 +199,31 @@ function viewHome(){
   return `
   <section class="video-hero">
     <div class="vh-text reveal">
-      <span class="eyebrow">Inspired by the Masters</span>
-      <h1>THE MASTERS<br>COLLECTION</h1>
-      <p class="vh-sub">한 장씩 손으로 고른 풀그레인 가죽 커버, 1,000페이지의 속지. 위대한 대가들의 창조 정신을 담은 핸드메이드 노트.</p>
+      <span class="eyebrow" data-edit="hero.eyebrow">Inspired by the Masters</span>
+      <h1 data-edit="hero.title">THE MASTERS<br>COLLECTION</h1>
+      <p class="vh-sub" data-edit="hero.sub">한 장씩 손으로 고른 풀그레인 가죽 커버, 1,000페이지의 속지. 위대한 대가들의 창조 정신을 담은 핸드메이드 노트.</p>
       <div class="vh-actions">
         <a href="#/products" class="btn btn-solid">컬렉션 보기</a>
         <a href="#/about" class="btn">브랜드 이야기</a>
       </div>
     </div>
     <div class="vh-media">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/img/vinci-film-hd-poster.jpg">
-        <source src="assets/img/vinci-film-hd.mp4" type="video/mp4">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/img/vinci-film-home-poster.jpg">
+        <source src="assets/img/vinci-film-home.mp4" type="video/mp4">
       </video>
+    </div>
+  </section>
+
+  <section class="philo-home reveal">
+    <div class="ph-inner">
+      <div class="ph-card">
+        <span class="eyebrow" data-edit="ourphilo.eyebrow">Our Philosophy</span>
+        <h2 data-edit="ourphilo.title">Our philosophy</h2>
+        <div class="ph-body" data-edit="ourphilo.body">
+          <p>여기에 우리의 철학을 직접 입력하세요. 오른쪽 아래 ‘✎ 편집’ 버튼을 켜면 이 글을 바로 타이핑해 고칠 수 있어요.</p>
+          <p>Create, act, and sincerely listen to your inner signal. Follow it, and go on.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -980,9 +993,84 @@ function render(){
   setActiveNav(route);
   bindViewEvents(parts);
   observeReveals();
+  hydrateEdits();      // 저장된 직접-편집 내용 반영
+  applyEditState();    // 편집 모드 켜져 있으면 편집 가능 상태 유지
   closeMenu();
   updateCartCount();
   updateAuthUI();
+}
+
+/* ============================================================
+   인라인 편집 모드 (직접 타이핑 · 브라우저에만 저장 · 초안용)
+   ============================================================ */
+const EDIT_PREFIX = 'poiesis_edit_';
+function hydrateEdits(){
+  $$('[data-edit]').forEach(el=>{
+    const v = localStorage.getItem(EDIT_PREFIX + el.dataset.edit);
+    if(v !== null) el.innerHTML = v;
+  });
+}
+function applyEditState(){
+  const on = document.body.classList.contains('edit-on');
+  $$('[data-edit]').forEach(el=>{
+    el.setAttribute('contenteditable', on ? 'true' : 'false');
+    if(on) el.setAttribute('spellcheck','false');
+  });
+}
+function initEditMode(){
+  // 떠다니는 컨트롤(렌더 사이에도 유지되도록 body에 한 번만 부착)
+  const bar = document.createElement('div');
+  bar.className = 'edit-bar';
+  bar.innerHTML = `
+    <button id="editExport" class="eb-btn eb-ghost" title="수정한 내용 전체를 복사">내보내기</button>
+    <button id="editReset" class="eb-btn eb-ghost" title="이 브라우저의 수정 내용 초기화">초기화</button>
+    <button id="editToggle" class="eb-btn eb-main">✎ 편집</button>`;
+  document.body.appendChild(bar);
+
+  $('#editToggle').addEventListener('click',()=>{
+    const on = document.body.classList.toggle('edit-on');
+    $('#editToggle').textContent = on ? '✓ 편집 끝내기' : '✎ 편집';
+    applyEditState();
+    if(on){ toast('편집 모드: 글자를 클릭해 바로 고치세요. (이 브라우저에만 저장)'); }
+    else { toast('수정 내용을 이 브라우저에 저장했어요.'); }
+  });
+
+  // 입력 위임: data-edit 요소가 바뀔 때마다 저장 (재렌더에도 유지)
+  document.addEventListener('input', e=>{
+    const el = e.target.closest && e.target.closest('[data-edit]');
+    if(!el) return;
+    localStorage.setItem(EDIT_PREFIX + el.dataset.edit, el.innerHTML);
+  });
+  // Enter 시 새 블록 대신 줄바꿈만 (단일행 요소 보호)
+  document.addEventListener('keydown', e=>{
+    const el = e.target.closest && e.target.closest('[data-edit]');
+    if(!el || !document.body.classList.contains('edit-on')) return;
+    if(e.key === 'Enter' && !el.classList.contains('ph-body') && el.dataset.edit!=='ourphilo.body'){
+      e.preventDefault();
+    }
+  });
+
+  $('#editExport').addEventListener('click',()=>{
+    const out = {};
+    for(let i=0;i<localStorage.length;i++){
+      const k = localStorage.key(i);
+      if(k.startsWith(EDIT_PREFIX)) out[k.slice(EDIT_PREFIX.length)] = localStorage.getItem(k);
+    }
+    const json = JSON.stringify(out, null, 2);
+    navigator.clipboard?.writeText(json).then(
+      ()=>toast('수정 내용을 클립보드에 복사했어요. 채팅에 붙여넣으면 영구 반영해 드릴게요.'),
+      ()=>{ console.log(json); toast('복사 실패 — 콘솔에 출력했어요.'); }
+    );
+  });
+
+  $('#editReset').addEventListener('click',()=>{
+    if(!confirm('이 브라우저에서 직접 수정한 내용을 모두 지울까요? (원본으로 되돌아갑니다)')) return;
+    const keys=[];
+    for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k.startsWith(EDIT_PREFIX)) keys.push(k); }
+    keys.forEach(k=>localStorage.removeItem(k));
+    render();
+    toast('원본으로 되돌렸어요.');
+  });
 }
 
 function setActiveNav(route){
@@ -1400,6 +1488,7 @@ async function initGlobal(){
   $$('#nav a').forEach(a=>a.addEventListener('click',closeMenu));
 
   window.addEventListener('hashchange',render);
+  initEditMode();                    // 인라인 편집 모드 컨트롤 부착
 
   await bootstrap();                 // 서버 연결 시도(없으면 데모 모드)
   if(await handleTossReturn()) return; // Toss 결제 복귀 처리 시 내부에서 라우팅
